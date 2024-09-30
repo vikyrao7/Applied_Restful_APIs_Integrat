@@ -1,0 +1,30 @@
+//  Created the MongoDB account  
+//  Using Mongosh mongoDB://<user>:<password>@<host>:<port>/<database> connection elsblished to existing account
+
+// Created the database for basketball
+use basketballPlayers
+
+// Created the collection and inserted the data into it
+db.basketballPlayers.insertMany([
+  { playerId: 1, name: "LeBron James", height: 202, weight: 115, pointsScored: 32000, yearsActive: 18, team: "Los Angeles Lakers" },
+  { playerId: 2, name: "Stephen Curry", height: 190, weight: 80, pointsScored: 20000, yearsActive: 12, team: "Golden State Warriors" },
+  { playerId: 3, name: "Kevin Durant", height: 210, weight: 110, pointsScored: 24000, yearsActive: 14, team: "Brooklyn Nets" },
+  { playerId: 4, name: "James Harden", height: 195, weight: 105, pointsScored: 22000, yearsActive: 13, team: "Philadelphia 76ers" },
+  
+])
+
+
+// 1. Queiring for players who have scored more than 25,000 points.
+db.basketballPlayers.find({ pointsScored: { $gt: 25000 } })
+
+// 2. Queiring for players who have been active for more than 10 years.
+db.basketballPlayers.find({ yearsActive: { $gt: 10 } })
+
+// 3. Queiring for all players with height greater than 2 meters (200 cm).
+db.basketballPlayers.find({ height: { $gt: 200 } })
+
+// 4. Queiring for players by their weight in ascending order.
+db.basketballPlayers.find().sort({ weight: 1 })
+
+// 5.  Queiring for players count from Golden State Warriors. 
+db.basketballPlayers.countDocuments({ team: "Golden State Warriors" })
